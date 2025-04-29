@@ -190,9 +190,9 @@ export default function Home() {
 
       <footer className="bg-gray-100 py-8 mt-16">
         <div className="container mx-auto px-6 text-center text-gray-600">
-          <p>© 2024 DRdot Solutions. All rights reserved.</p>
+          <p>© 2025 DRdot Solutions. All rights reserved.</p>
           <p className="mt-2">
-            Contact us: <a href="mailto:info@drdotsolutions.com" className="text-indigo-600 hover:underline">info@drdotsolutions.com</a>
+            Contact us: <a href="mailto:support@drdotsolutions.com" className="text-indigo-600 hover:underline">support@drdotsolutions.com</a>
           </p>
         </div>
       </footer>
