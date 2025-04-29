@@ -1,5 +1,6 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import Head from 'next/head';
+import Image from 'next/image';
 
 interface FormData {
   fullname: string;
@@ -56,21 +57,32 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>DRdot Solutions - IoT, Web, Mobile & AI Services</title>
-        <meta name="description" content="DRdot Solutions provides innovative IoT infrastructure, web and mobile application design, and AI services for businesses." />
+        <title>DRDOT Solutions - IoT, Web, Mobile & AI Services</title>
+        <meta name="description" content="DRDOT Solutions provides innovative IoT infrastructure, web and mobile application design, and AI services for businesses." />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
       </Head>
 
       <header className="bg-white shadow-md fixed w-full z-10">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center">
-            <h1 className="text-2xl font-bold text-indigo-600">DR<span className="text-gray-800">DOT</span> Solutions</h1>
+            <div className="flex items-center">
+              <div className="relative w-12 h-12 mr-3">
+                <Image 
+                  src="/images/dr_logo.jpeg" 
+                  alt="DRDOT Solutions Logo" 
+                  layout="fill"
+                  objectFit="contain"
+                  priority
+                />
+              </div>
+              <h1 className="text-2xl font-bold text-gray-800">DR<span className="text-blue-600">DOT</span> Solutions</h1>
+            </div>
           </div>
           <nav className="space-x-8 text-gray-600 font-medium hidden md:flex">
-            <a href="#home" className="hover:text-indigo-600 transition duration-300">Home</a>
-            <a href="#services" className="hover:text-indigo-600 transition duration-300">Services</a>
-            <a href="#about" className="hover:text-indigo-600 transition duration-300">About</a>
-            <a href="#contact" className="hover:text-indigo-600 transition duration-300">Contact</a>
+            <a href="#home" className="hover:text-blue-600 transition duration-300">Home</a>
+            <a href="#services" className="hover:text-blue-600 transition duration-300">Services</a>
+            <a href="#about" className="hover:text-blue-600 transition duration-300">About</a>
+            <a href="#contact" className="hover:text-blue-600 transition duration-300">Contact</a>
           </nav>
           <button
             className="md:hidden text-gray-600 focus:outline-none"
@@ -82,31 +94,31 @@ export default function Home() {
         </div>
         {menuOpen && (
           <nav className="bg-white shadow-md md:hidden">
-            <a href="#home" className="block px-6 py-3 border-b border-gray-200 hover:bg-indigo-50">Home</a>
-            <a href="#services" className="block px-6 py-3 border-b border-gray-200 hover:bg-indigo-50">Services</a>
-            <a href="#about" className="block px-6 py-3 border-b border-gray-200 hover:bg-indigo-50">About</a>
-            <a href="#contact" className="block px-6 py-3 hover:bg-indigo-50">Contact</a>
+            <a href="#home" className="block px-6 py-3 border-b border-gray-200 hover:bg-blue-50">Home</a>
+            <a href="#services" className="block px-6 py-3 border-b border-gray-200 hover:bg-blue-50">Services</a>
+            <a href="#about" className="block px-6 py-3 border-b border-gray-200 hover:bg-blue-50">About</a>
+            <a href="#contact" className="block px-6 py-3 hover:bg-blue-50">Contact</a>
           </nav>
         )}
       </header>
 
       <main className="pt-20">
         {/* Hero Section */}
-        <section id="home" className="bg-gradient-to-r from-indigo-600 to-purple-700 text-white py-24">
+        <section id="home" className="bg-gradient-to-r from-gray-900 to-blue-900 text-white py-24">
           <div className="container mx-auto px-6">
             <div className="flex flex-col md:flex-row items-center">
               <div className="md:w-1/2 mb-10 md:mb-0">
                 <h2 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
-                  Transforming Ideas into <span className="text-yellow-300">Digital Reality</span>
+                  Transforming Ideas into <span className="text-blue-400">Digital Reality</span>
                 </h2>
-                <p className="text-xl mb-8 text-indigo-100">
+                <p className="text-xl mb-8 text-gray-300">
                   We specialize in building robust IoT infrastructure, delivering top-notch web and mobile applications, and creating intelligent AI solutions for your business.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <a href="#services" className="bg-white text-indigo-700 px-8 py-3 rounded-lg font-semibold hover:bg-indigo-50 transition duration-300 text-center">
+                  <a href="#services" className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 text-center">
                     Explore Our Services
                   </a>
-                  <a href="#contact" className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-indigo-700 transition duration-300 text-center">
+                  <a href="#contact" className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-900 transition duration-300 text-center">
                     Get in Touch
                   </a>
                 </div>
@@ -141,8 +153,8 @@ export default function Home() {
         <section id="about" className="py-20 bg-gray-50">
           <div className="container mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">About DRdot Solutions</h2>
-              <div className="w-24 h-1 bg-indigo-600 mx-auto"></div>
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">About DRDOT Solutions</h2>
+              <div className="w-24 h-1 bg-blue-600 mx-auto"></div>
             </div>
             <div className="flex flex-col md:flex-row items-center gap-12">
               <div className="md:w-1/2">
@@ -151,35 +163,35 @@ export default function Home() {
               <div className="md:w-1/2">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Innovation at Our Core</h3>
                 <p className="text-gray-600 mb-6">
-                  At DRdot Solutions, we believe in pushing the boundaries of technology to create solutions that drive business growth and innovation. Our team of experts combines creativity with technical excellence to deliver exceptional results.
+                  At DRDOT Solutions, we believe in pushing the boundaries of technology to create solutions that drive business growth and innovation. Our team of experts combines creativity with technical excellence to deliver exceptional results.
                 </p>
                 <div className="grid grid-cols-2 gap-6 mb-6">
                   <div className="flex items-center">
-                    <div className="bg-indigo-100 p-3 rounded-full mr-4">
-                      {isClient && <i className="fas fa-check text-indigo-600"></i>}
+                    <div className="bg-blue-100 p-3 rounded-full mr-4">
+                      {isClient && <i className="fas fa-check text-blue-600"></i>}
                     </div>
                     <span className="font-medium">Expert Team</span>
                   </div>
                   <div className="flex items-center">
-                    <div className="bg-indigo-100 p-3 rounded-full mr-4">
-                      {isClient && <i className="fas fa-check text-indigo-600"></i>}
+                    <div className="bg-blue-100 p-3 rounded-full mr-4">
+                      {isClient && <i className="fas fa-check text-blue-600"></i>}
                     </div>
                     <span className="font-medium">Quality Assured</span>
                   </div>
                   <div className="flex items-center">
-                    <div className="bg-indigo-100 p-3 rounded-full mr-4">
-                      {isClient && <i className="fas fa-check text-indigo-600"></i>}
+                    <div className="bg-blue-100 p-3 rounded-full mr-4">
+                      {isClient && <i className="fas fa-check text-blue-600"></i>}
                     </div>
                     <span className="font-medium">24/7 Support</span>
                   </div>
                   <div className="flex items-center">
-                    <div className="bg-indigo-100 p-3 rounded-full mr-4">
-                      {isClient && <i className="fas fa-check text-indigo-600"></i>}
+                    <div className="bg-blue-100 p-3 rounded-full mr-4">
+                      {isClient && <i className="fas fa-check text-blue-600"></i>}
                     </div>
                     <span className="font-medium">Custom Solutions</span>
                   </div>
                 </div>
-                <a href="#contact" className="inline-block bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition duration-300">
+                <a href="#contact" className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
                   Learn More
                 </a>
               </div>
@@ -192,15 +204,15 @@ export default function Home() {
           <div className="container mx-auto px-6 max-w-6xl">
             <div className="text-center mb-16">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Services</h2>
-              <div className="w-24 h-1 bg-indigo-600 mx-auto"></div>
+              <div className="w-24 h-1 bg-blue-600 mx-auto"></div>
               <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
                 We offer a comprehensive range of technology services to help your business thrive in the digital age.
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 group">
-                <div className="bg-indigo-100 p-4 rounded-lg inline-block mb-6 group-hover:bg-indigo-600 transition duration-300">
-                  <div className="text-indigo-600 text-3xl group-hover:text-white transition duration-300">
+                <div className="bg-blue-100 p-4 rounded-lg inline-block mb-6 group-hover:bg-blue-600 transition duration-300">
+                  <div className="text-blue-600 text-3xl group-hover:text-white transition duration-300">
                     {isClient && <i className="fas fa-microchip"></i>}
                   </div>
                 </div>
@@ -208,13 +220,13 @@ export default function Home() {
                 <p className="text-gray-600 mb-6">
                   Design and implementation of scalable and secure IoT infrastructure tailored to your business needs.
                 </p>
-                <a href="#contact" className="text-indigo-600 font-medium hover:text-indigo-800 transition duration-300 flex items-center">
+                <a href="#contact" className="text-blue-600 font-medium hover:text-blue-800 transition duration-300 flex items-center">
                   Learn More <i className="fas fa-arrow-right ml-2"></i>
                 </a>
               </div>
               <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 group">
-                <div className="bg-indigo-100 p-4 rounded-lg inline-block mb-6 group-hover:bg-indigo-600 transition duration-300">
-                  <div className="text-indigo-600 text-3xl group-hover:text-white transition duration-300">
+                <div className="bg-blue-100 p-4 rounded-lg inline-block mb-6 group-hover:bg-blue-600 transition duration-300">
+                  <div className="text-blue-600 text-3xl group-hover:text-white transition duration-300">
                     {isClient && <i className="fas fa-laptop-code"></i>}
                   </div>
                 </div>
@@ -222,13 +234,13 @@ export default function Home() {
                 <p className="text-gray-600 mb-6">
                   Creating modern, responsive, and user-friendly web applications that drive engagement and growth.
                 </p>
-                <a href="#contact" className="text-indigo-600 font-medium hover:text-indigo-800 transition duration-300 flex items-center">
+                <a href="#contact" className="text-blue-600 font-medium hover:text-blue-800 transition duration-300 flex items-center">
                   Learn More <i className="fas fa-arrow-right ml-2"></i>
                 </a>
               </div>
               <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 group">
-                <div className="bg-indigo-100 p-4 rounded-lg inline-block mb-6 group-hover:bg-indigo-600 transition duration-300">
-                  <div className="text-indigo-600 text-3xl group-hover:text-white transition duration-300">
+                <div className="bg-blue-100 p-4 rounded-lg inline-block mb-6 group-hover:bg-blue-600 transition duration-300">
+                  <div className="text-blue-600 text-3xl group-hover:text-white transition duration-300">
                     {isClient && <i className="fas fa-mobile-alt"></i>}
                   </div>
                 </div>
@@ -236,13 +248,13 @@ export default function Home() {
                 <p className="text-gray-600 mb-6">
                   Reliable maintenance and support services to keep your mobile applications running smoothly.
                 </p>
-                <a href="#contact" className="text-indigo-600 font-medium hover:text-indigo-800 transition duration-300 flex items-center">
+                <a href="#contact" className="text-blue-600 font-medium hover:text-blue-800 transition duration-300 flex items-center">
                   Learn More <i className="fas fa-arrow-right ml-2"></i>
                 </a>
               </div>
               <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 group">
-                <div className="bg-indigo-100 p-4 rounded-lg inline-block mb-6 group-hover:bg-indigo-600 transition duration-300">
-                  <div className="text-indigo-600 text-3xl group-hover:text-white transition duration-300">
+                <div className="bg-blue-100 p-4 rounded-lg inline-block mb-6 group-hover:bg-blue-600 transition duration-300">
+                  <div className="text-blue-600 text-3xl group-hover:text-white transition duration-300">
                     {isClient && <i className="fas fa-robot"></i>}
                   </div>
                 </div>
@@ -250,7 +262,7 @@ export default function Home() {
                 <p className="text-gray-600 mb-6">
                   Building intelligent AI agents and providing cutting-edge AI services to automate and enhance your business operations.
                 </p>
-                <a href="#contact" className="text-indigo-600 font-medium hover:text-indigo-800 transition duration-300 flex items-center">
+                <a href="#contact" className="text-blue-600 font-medium hover:text-blue-800 transition duration-300 flex items-center">
                   Learn More <i className="fas fa-arrow-right ml-2"></i>
                 </a>
               </div>
@@ -263,14 +275,14 @@ export default function Home() {
           <div className="container mx-auto px-6 max-w-4xl">
             <div className="text-center mb-16">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">Contact Us</h2>
-              <div className="w-24 h-1 bg-indigo-600 mx-auto"></div>
+              <div className="w-24 h-1 bg-blue-600 mx-auto"></div>
               <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
                 Have a project in mind? Get in touch with us and let's discuss how we can help bring your ideas to life.
               </p>
             </div>
             <div className="bg-white rounded-xl shadow-xl overflow-hidden">
               <div className="md:flex">
-                <div className="md:w-1/3 bg-indigo-600 p-8 text-white">
+                <div className="md:w-1/3 bg-blue-900 p-8 text-white">
                   <h3 className="text-xl font-bold mb-6">Get In Touch</h3>
                   <div className="mb-6">
                     <div className="flex items-center mb-4">
@@ -279,7 +291,7 @@ export default function Home() {
                       </div>
                       <div>
                         <h4 className="font-semibold">Our Location</h4>
-                        <p className="text-indigo-100">Telangana, India</p>
+                        <p className="text-blue-100">Telangana, India</p>
                       </div>
                     </div>
                     <div className="flex items-center mb-4">
@@ -288,7 +300,7 @@ export default function Home() {
                       </div>
                       <div>
                         <h4 className="font-semibold">Email Us</h4>
-                        <p className="text-indigo-100">support@drdotsolutions.com</p>
+                        <p className="text-blue-100">support@drdotsolutions.com</p>
                       </div>
                     </div>
                     <div className="flex items-center">
@@ -297,7 +309,7 @@ export default function Home() {
                       </div>
                       <div>
                         <h4 className="font-semibold">Call Us</h4>
-                        <p className="text-indigo-100">+91 9014119507</p>
+                        <p className="text-blue-100">+91 9014119507</p>
                       </div>
                     </div>
                   </div>
@@ -328,7 +340,7 @@ export default function Home() {
                           value={formData.fullname}
                           onChange={handleChange}
                           required
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-300"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-300"
                           placeholder="John"
                         />
                       </div>
@@ -341,7 +353,7 @@ export default function Home() {
                           value={formData.email}
                           onChange={handleChange}
                           required
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-300"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-300"
                           placeholder="john@example.com"
                         />
                       </div>
@@ -354,7 +366,7 @@ export default function Home() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-300"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-300"
                         placeholder="+1 (555) 123-4567"
                       />
                     </div>
@@ -367,13 +379,13 @@ export default function Home() {
                         value={formData.message}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-300"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-300"
                         placeholder="How can we help you?"
                       ></textarea>
                     </div>
                     <button
                       type="submit"
-                      className="w-full bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition duration-300"
+                      className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300"
                     >
                       Send Message
                     </button>
@@ -394,7 +406,17 @@ export default function Home() {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <h3 className="text-xl font-bold mb-4">DR<span className="text-indigo-400">dot</span> Solutions</h3>
+              <div className="flex items-center mb-4">
+                <div className="relative w-12 h-12 mr-3">
+                  <Image 
+                    src="/images/dr_logo.jpeg" 
+                    alt="DRDOT Solutions Logo" 
+                    layout="fill"
+                    objectFit="contain"
+                  />
+                </div>
+                <h3 className="text-xl font-bold">DR<span className="text-blue-400">DOT</span> Solutions</h3>
+              </div>
               <p className="text-gray-400 mb-4">
                 Transforming ideas into digital reality with innovative technology solutions.
               </p>
@@ -435,22 +457,22 @@ export default function Home() {
               <h4 className="text-lg font-semibold mb-4">Contact Info</h4>
               <ul className="space-y-2">
                 <li className="flex items-center">
-                  <i className="fas fa-map-marker-alt mr-2 text-indigo-400"></i>
+                  <i className="fas fa-map-marker-alt mr-2 text-blue-400"></i>
                   <span className="text-gray-400">Telangana, India</span>
                 </li>
                 <li className="flex items-center">
-                  <i className="fas fa-envelope mr-2 text-indigo-400"></i>
+                  <i className="fas fa-envelope mr-2 text-blue-400"></i>
                   <span className="text-gray-400">support@drdotsolutions.com</span>
                 </li>
                 <li className="flex items-center">
-                  <i className="fas fa-phone mr-2 text-indigo-400"></i>
+                  <i className="fas fa-phone mr-2 text-blue-400"></i>
                   <span className="text-gray-400">+91 9014119507</span>
                 </li>
               </ul>
             </div>
           </div>
           <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-            <p>© {new Date().getFullYear()} DRdot Solutions. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} DRDOT Solutions. All rights reserved.</p>
           </div>
         </div>
       </footer>
