@@ -94,7 +94,7 @@ export default function Home() {
       <section id="services" className="bg-white py-16">
         <div className="container mx-auto px-6 max-w-5xl">
           <h3 className="text-3xl font-bold text-center text-gray-900 mb-12">Our Services</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
             <div className="bg-indigo-50 p-6 rounded-lg shadow hover:shadow-lg transition">
               <div className="text-indigo-600 text-4xl mb-4">
                 {isClient && <i className="fas fa-microchip"></i>}
@@ -120,6 +120,15 @@ export default function Home() {
               <h4 className="text-xl font-semibold mb-2">Mobile App Maintenance</h4>
               <p className="text-gray-600">
                 Reliable maintenance and support services to keep your mobile applications running smoothly.
+              </p>
+            </div>
+            <div className="bg-indigo-50 p-6 rounded-lg shadow hover:shadow-lg transition">
+              <div className="text-indigo-600 text-4xl mb-4">
+                {isClient && <i className="fas fa-robot"></i>}
+              </div>
+              <h4 className="text-xl font-semibold mb-2">AI Agents & Services</h4>
+              <p className="text-gray-600">
+                Building intelligent AI agents and providing cutting-edge AI services to automate and enhance your business operations.
               </p>
             </div>
           </div>
