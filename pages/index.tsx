@@ -1,6 +1,8 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 interface FormData {
   fullname: string;
@@ -8,6 +10,103 @@ interface FormData {
   phone: string;
   message: string;
 }
+
+// Animation variants
+const fadeInUp = {
+  hidden: { opacity: 0, y: 60 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  }
+};
+
+const fadeIn = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
+};
+
+// Animated component wrapper
+const AnimatedSection = ({ children, className, delay = 0 }) => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    threshold: 0.2,
+    triggerOnce: true
+  });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
+
+  return (
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={controls}
+      variants={fadeInUp}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+// Animated service card
+const ServiceCard = ({ icon, title, description }) => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    threshold: 0.2,
+    triggerOnce: true
+  });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
+
+  return (
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={controls}
+      variants={fadeInUp}
+      className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 group"
+    >
+      <div className="bg-blue-100 p-4 rounded-lg inline-block mb-6 group-hover:bg-blue-600 transition duration-300">
+        <div className="text-blue-600 text-3xl group-hover:text-white transition duration-300">
+          {icon}
+        </div>
+      </div>
+      <h4 className="text-xl font-semibold mb-3 text-gray-900">{title}</h4>
+      <p className="text-gray-600 mb-6">{description}</p>
+      <a href="#contact" className="text-blue-600 font-medium hover:text-blue-800 transition duration-300 flex items-center">
+        Learn More <i className="fas fa-arrow-right ml-2"></i>
+      </a>
+    </motion.div>
+  );
+};
 
 export default function Home() {
   const [formData, setFormData] = useState<FormData>({
@@ -18,6 +117,11 @@ export default function Home() {
   });
   const [status, setStatus] = useState<string>('');
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const [mounted, setMounted] = useState<boolean>(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({...formData, [e.target.name]: e.target.value});
@@ -53,6 +157,11 @@ export default function Home() {
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  // Don't render animations until after hydration
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <>
@@ -107,7 +216,7 @@ export default function Home() {
         <section id="home" className="bg-gradient-to-r from-gray-900 to-blue-900 text-white py-24">
           <div className="container mx-auto px-6">
             <div className="flex flex-col md:flex-row items-center">
-              <div className="md:w-1/2 mb-10 md:mb-0">
+              <AnimatedSection className="md:w-1/2 mb-10 md:mb-0">
                 <h2 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
                   Transforming Ideas into <span className="text-blue-400">Digital Reality</span>
                 </h2>
@@ -122,8 +231,8 @@ export default function Home() {
                     Get in Touch
                   </a>
                 </div>
-              </div>
-              <div className="md:w-1/2">
+              </AnimatedSection>
+              <AnimatedSection className="md:w-1/2" delay={0.3}>
                 <div className="bg-white/10 backdrop-blur-sm p-8 rounded-xl shadow-2xl">
                   <div className="grid grid-cols-2 gap-6">
                     <div className="bg-white/20 p-6 rounded-lg text-center">
@@ -144,7 +253,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </AnimatedSection>
             </div>
           </div>
         </section>
@@ -152,15 +261,15 @@ export default function Home() {
         {/* About Section */}
         <section id="about" className="py-20 bg-gray-50">
           <div className="container mx-auto px-6">
-            <div className="text-center mb-16">
+            <AnimatedSection className="text-center mb-16">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">About DRDOT Solutions</h2>
               <div className="w-24 h-1 bg-blue-600 mx-auto"></div>
-            </div>
+            </AnimatedSection>
             <div className="flex flex-col md:flex-row items-center gap-12">
-              <div className="md:w-1/2">
+              <AnimatedSection className="md:w-1/2">
                 <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team working" className="rounded-lg shadow-xl" />
-              </div>
-              <div className="md:w-1/2">
+              </AnimatedSection>
+              <AnimatedSection className="md:w-1/2">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Innovation at Our Core</h3>
                 <p className="text-gray-600 mb-6">
                   At DRDOT Solutions, we believe in pushing the boundaries of technology to create solutions that drive business growth and innovation. Our team of experts combines creativity with technical excellence to deliver exceptional results.
@@ -194,7 +303,7 @@ export default function Home() {
                 <a href="#contact" className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
                   Learn More
                 </a>
-              </div>
+              </AnimatedSection>
             </div>
           </div>
         </section>
@@ -202,85 +311,55 @@ export default function Home() {
         {/* Services Section */}
         <section id="services" className="py-20 bg-white">
           <div className="container mx-auto px-6 max-w-6xl">
-            <div className="text-center mb-16">
+            <AnimatedSection className="text-center mb-16">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Services</h2>
               <div className="w-24 h-1 bg-blue-600 mx-auto"></div>
               <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
                 We offer a comprehensive range of technology services to help your business thrive in the digital age.
               </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 group">
-                <div className="bg-blue-100 p-4 rounded-lg inline-block mb-6 group-hover:bg-blue-600 transition duration-300">
-                  <div className="text-blue-600 text-3xl group-hover:text-white transition duration-300">
-                    {isClient && <i className="fas fa-microchip"></i>}
-                  </div>
-                </div>
-                <h4 className="text-xl font-semibold mb-3 text-gray-900">IoT Infrastructure</h4>
-                <p className="text-gray-600 mb-6">
-                  Design and implementation of scalable and secure IoT infrastructure tailored to your business needs.
-                </p>
-                <a href="#contact" className="text-blue-600 font-medium hover:text-blue-800 transition duration-300 flex items-center">
-                  Learn More <i className="fas fa-arrow-right ml-2"></i>
-                </a>
-              </div>
-              <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 group">
-                <div className="bg-blue-100 p-4 rounded-lg inline-block mb-6 group-hover:bg-blue-600 transition duration-300">
-                  <div className="text-blue-600 text-3xl group-hover:text-white transition duration-300">
-                    {isClient && <i className="fas fa-laptop-code"></i>}
-                  </div>
-                </div>
-                <h4 className="text-xl font-semibold mb-3 text-gray-900">Web Application Design</h4>
-                <p className="text-gray-600 mb-6">
-                  Creating modern, responsive, and user-friendly web applications that drive engagement and growth.
-                </p>
-                <a href="#contact" className="text-blue-600 font-medium hover:text-blue-800 transition duration-300 flex items-center">
-                  Learn More <i className="fas fa-arrow-right ml-2"></i>
-                </a>
-              </div>
-              <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 group">
-                <div className="bg-blue-100 p-4 rounded-lg inline-block mb-6 group-hover:bg-blue-600 transition duration-300">
-                  <div className="text-blue-600 text-3xl group-hover:text-white transition duration-300">
-                    {isClient && <i className="fas fa-mobile-alt"></i>}
-                  </div>
-                </div>
-                <h4 className="text-xl font-semibold mb-3 text-gray-900">Mobile App Maintenance</h4>
-                <p className="text-gray-600 mb-6">
-                  Reliable maintenance and support services to keep your mobile applications running smoothly.
-                </p>
-                <a href="#contact" className="text-blue-600 font-medium hover:text-blue-800 transition duration-300 flex items-center">
-                  Learn More <i className="fas fa-arrow-right ml-2"></i>
-                </a>
-              </div>
-              <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 group">
-                <div className="bg-blue-100 p-4 rounded-lg inline-block mb-6 group-hover:bg-blue-600 transition duration-300">
-                  <div className="text-blue-600 text-3xl group-hover:text-white transition duration-300">
-                    {isClient && <i className="fas fa-robot"></i>}
-                  </div>
-                </div>
-                <h4 className="text-xl font-semibold mb-3 text-gray-900">AI Agents & Services</h4>
-                <p className="text-gray-600 mb-6">
-                  Building intelligent AI agents and providing cutting-edge AI services to automate and enhance your business operations.
-                </p>
-                <a href="#contact" className="text-blue-600 font-medium hover:text-blue-800 transition duration-300 flex items-center">
-                  Learn More <i className="fas fa-arrow-right ml-2"></i>
-                </a>
-              </div>
-            </div>
+            </AnimatedSection>
+            <motion.div 
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              <ServiceCard 
+                icon={isClient && <i className="fas fa-microchip"></i>}
+                title="IoT Infrastructure"
+                description="Design and implementation of scalable and secure IoT infrastructure tailored to your business needs."
+              />
+              <ServiceCard 
+                icon={isClient && <i className="fas fa-laptop-code"></i>}
+                title="Web Application Design"
+                description="Creating modern, responsive, and user-friendly web applications that drive engagement and growth."
+              />
+              <ServiceCard 
+                icon={isClient && <i className="fas fa-mobile-alt"></i>}
+                title="Mobile App Maintenance"
+                description="Reliable maintenance and support services to keep your mobile applications running smoothly."
+              />
+              <ServiceCard 
+                icon={isClient && <i className="fas fa-robot"></i>}
+                title="AI Agents & Services"
+                description="Building intelligent AI agents and providing cutting-edge AI services to automate and enhance your business operations."
+              />
+            </motion.div>
           </div>
         </section>
 
         {/* Contact Section */}
         <section id="contact" className="py-20 bg-gray-50">
           <div className="container mx-auto px-6 max-w-4xl">
-            <div className="text-center mb-16">
+            <AnimatedSection className="text-center mb-16">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">Contact Us</h2>
               <div className="w-24 h-1 bg-blue-600 mx-auto"></div>
               <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
                 Have a project in mind? Get in touch with us and let's discuss how we can help bring your ideas to life.
               </p>
-            </div>
-            <div className="bg-white rounded-xl shadow-xl overflow-hidden">
+            </AnimatedSection>
+            <AnimatedSection className="bg-white rounded-xl shadow-xl overflow-hidden">
               <div className="md:flex">
                 <div className="md:w-1/3 bg-blue-900 p-8 text-white">
                   <h3 className="text-xl font-bold mb-6">Get In Touch</h3>
@@ -397,7 +476,7 @@ export default function Home() {
                   )}
                 </div>
               </div>
-            </div>
+            </AnimatedSection>
           </div>
         </section>
       </main>
