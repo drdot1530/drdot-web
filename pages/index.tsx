@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 interface FormData {
   fullname: string;
