@@ -1,6 +1,7 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
@@ -168,30 +169,48 @@ export default function Home() {
       <Head>
         <title>DRDOT Solutions - IoT, Web, Mobile & AI Services</title>
         <meta name="description" content="DRDOT Solutions provides innovative IoT infrastructure, web and mobile application design, and AI services for businesses." />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
       </Head>
 
       <header className="bg-white shadow-md fixed w-full z-10">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center">
             <div className="flex items-center">
-              <div className="relative w-12 h-12 mr-3">
-                <Image 
-                  src="/images/dr_logo.jpeg" 
-                  alt="DRDOT Solutions Logo" 
-                  layout="fill"
-                  objectFit="contain"
-                  priority
-                />
-              </div>
-              <h1 className="text-2xl font-bold text-gray-800">DR<span className="text-blue-600">DOT</span> Solutions</h1>
+              <Link href="/" className="flex items-center cursor-pointer group">
+                <div className="relative w-20 h-16 mr-4 transition-all duration-300 group-hover:w-24">
+                  <Image 
+                    src="/images/dr_logo.png" 
+                    alt="DRDOT Solutions Logo" 
+                    fill
+                    sizes="(max-width: 768px) 500vw, (max-width: 1200px) 500vw, 200vw"
+                    style={{ objectFit: 'contain' }}
+                    priority
+                  />
+                </div>
+                <h1 className="text-2xl font-bold text-gray-800 transition-all duration-300 group-hover:text-green-900">DR<span className="text-green-900">DOT</span> Solutions</h1>
+              </Link>
             </div>
           </div>
           <nav className="space-x-8 text-gray-600 font-medium hidden md:flex">
-            <a href="#home" className="hover:text-blue-600 transition duration-300">Home</a>
-            <a href="#services" className="hover:text-blue-600 transition duration-300">Services</a>
-            <a href="#about" className="hover:text-blue-600 transition duration-300">About</a>
-            <a href="#contact" className="hover:text-blue-600 transition duration-300">Contact</a>
+            <a href="#home" className="hover:text-blue-600 transition duration-300 relative group">
+              Home
+              <span className="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-green-900 group-hover:w-3/6"></span>
+              <span className="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-green-900 group-hover:w-3/6"></span>
+            </a>
+            <a href="#services" className="hover:text-blue-600 transition duration-300 relative group">
+              Services
+              <span className="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-green-900 group-hover:w-3/6"></span>
+              <span className="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-green-900 group-hover:w-3/6"></span>
+            </a>
+            <a href="#about" className="hover:text-blue-600 transition duration-300 relative group">
+              About
+              <span className="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-green-900 group-hover:w-3/6"></span>
+              <span className="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-green-900 group-hover:w-3/6"></span>
+            </a>
+            <a href="#contact" className="hover:text-blue-600 transition duration-300 relative group">
+              Contact
+              <span className="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-green-900 group-hover:w-3/6"></span>
+              <span className="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-green-900 group-hover:w-3/6"></span>
+            </a>
           </nav>
           <button
             className="md:hidden text-gray-600 focus:outline-none"
@@ -203,56 +222,107 @@ export default function Home() {
         </div>
         {menuOpen && (
           <nav className="bg-white shadow-md md:hidden">
-            <a href="#home" className="block px-6 py-3 border-b border-gray-200 hover:bg-blue-50">Home</a>
-            <a href="#services" className="block px-6 py-3 border-b border-gray-200 hover:bg-blue-50">Services</a>
-            <a href="#about" className="block px-6 py-3 border-b border-gray-200 hover:bg-blue-50">About</a>
-            <a href="#contact" className="block px-6 py-3 hover:bg-blue-50">Contact</a>
+            <a href="#home" className="block px-6 py-3 border-b border-gray-200 hover:bg-blue-50 relative group">
+              Home
+              <span className="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-blue-600 group-hover:w-3/6"></span>
+              <span className="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-blue-600 group-hover:w-3/6"></span>
+            </a>
+            <a href="#services" className="block px-6 py-3 border-b border-gray-200 hover:bg-blue-50 relative group">
+              Services
+              <span className="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-blue-600 group-hover:w-3/6"></span>
+              <span className="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-blue-600 group-hover:w-3/6"></span>
+            </a>
+            <a href="#about" className="block px-6 py-3 border-b border-gray-200 hover:bg-blue-50 relative group">
+              About
+              <span className="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-blue-600 group-hover:w-3/6"></span>
+              <span className="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-blue-600 group-hover:w-3/6"></span>
+            </a>
+            <a href="#contact" className="block px-6 py-3 hover:bg-blue-50 relative group">
+              Contact
+              <span className="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-blue-600 group-hover:w-3/6"></span>
+              <span className="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-blue-600 group-hover:w-3/6"></span>
+            </a>
           </nav>
         )}
       </header>
 
       <main className="pt-20">
         {/* Hero Section */}
-        <section id="home" className="bg-gradient-to-r from-gray-900 to-blue-900 text-white py-24">
-          <div className="container mx-auto px-6">
-            <div className="flex flex-col md:flex-row items-center">
+        <section id="home" className="bg-gradient-to-r from-gray-900 to-blue-900 text-white py-32 relative overflow-hidden">
+          <div className="absolute inset-0 bg-[url('/images/grid.svg')] opacity-10"></div>
+          <div className="container mx-auto px-8 relative">
+            <div className="flex flex-col md:flex-row items-center md:items-start gap-y-12 md:gap-x-20">
               <AnimatedSection className="md:w-1/2 mb-10 md:mb-0">
-                <h2 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
-                  Transforming Ideas into <span className="text-blue-400">Digital Reality</span>
-                </h2>
-                <p className="text-xl mb-8 text-gray-300">
+                <motion.h2 
+                  className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, ease: [0.68, -0.55, 0.27, 1.55] }}
+                >
+                  Transforming Ideas into <span className="text-blue-400 relative">
+                    Digital Reality
+                    <motion.span 
+                      className="absolute -bottom-2 left-0 w-full h-1 bg-blue-400"
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: 1 }}
+                      transition={{ delay: 0.2, duration: 0.4, ease: [0.68, -0.55, 0.27, 1.55] }}
+                    />
+                  </span>
+                </motion.h2>
+                <motion.p 
+                  className="text-xl mb-8 text-gray-300"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.1, ease: [0.68, -0.55, 0.27, 1.55] }}
+                >
                   We specialize in building robust IoT infrastructure, delivering top-notch web and mobile applications, and creating intelligent AI solutions for your business.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <a href="#services" className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 text-center">
+                </motion.p>
+                <motion.div 
+                  className="flex flex-col sm:flex-row gap-4"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.2, ease: [0.68, -0.55, 0.27, 1.55] }}
+                >
+                  <a href="#services" className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 text-center transform hover:scale-105 hover:shadow-lg">
                     Explore Our Services
                   </a>
-                  <a href="#contact" className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-900 transition duration-300 text-center">
+                  <a href="#contact" className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-900 transition duration-300 text-center transform hover:scale-105 hover:shadow-lg">
                     Get in Touch
                   </a>
-                </div>
+                </motion.div>
               </AnimatedSection>
               <AnimatedSection className="md:w-1/2" delay={0.3}>
-                <div className="bg-white/10 backdrop-blur-sm p-8 rounded-xl shadow-2xl">
+                <motion.div 
+                  className="bg-white/10 backdrop-blur-sm p-8 rounded-xl shadow-2xl"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4, ease: [0.68, -0.55, 0.27, 1.55] }}
+                >
                   <div className="grid grid-cols-2 gap-6">
-                    <div className="bg-white/20 p-6 rounded-lg text-center">
-                      <div className="text-4xl mb-2">{isClient && <i className="fas fa-microchip"></i>}</div>
-                      <h3 className="font-bold">IoT Solutions</h3>
-                    </div>
-                    <div className="bg-white/20 p-6 rounded-lg text-center">
-                      <div className="text-4xl mb-2">{isClient && <i className="fas fa-laptop-code"></i>}</div>
-                      <h3 className="font-bold">Web Apps</h3>
-                    </div>
-                    <div className="bg-white/20 p-6 rounded-lg text-center">
-                      <div className="text-4xl mb-2">{isClient && <i className="fas fa-mobile-alt"></i>}</div>
-                      <h3 className="font-bold">Mobile Apps</h3>
-                    </div>
-                    <div className="bg-white/20 p-6 rounded-lg text-center">
-                      <div className="text-4xl mb-2">{isClient && <i className="fas fa-robot"></i>}</div>
-                      <h3 className="font-bold">AI Services</h3>
-                    </div>
+                    {[
+                      { icon: 'microchip', title: 'IoT Solutions' },
+                      { icon: 'laptop-code', title: 'Web Apps' },
+                      { icon: 'mobile-alt', title: 'Mobile Apps' },
+                      { icon: 'robot', title: 'AI Services' }
+                    ].map((item, index) => (
+                      <motion.div
+                        key={item.title}
+                        className="bg-white/20 p-6 rounded-lg text-center transform hover:scale-105 transition-all duration-300 cursor-pointer"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3, delay: 0.1 + index * 0.07, ease: [0.68, -0.55, 0.27, 1.55] }}
+                        whileHover={{ 
+                          scale: 1.12,
+                          backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                          boxShadow: '0 8px 32px 0 rgba(30,194,139,0.25)'
+                        }}
+                      >
+                        <div className="text-4xl mb-2">{isClient && <i className={`fas fa-${item.icon}`}></i>}</div>
+                        <h3 className="font-bold">{item.title}</h3>
+                      </motion.div>
+                    ))}
                   </div>
-                </div>
+                </motion.div>
               </AnimatedSection>
             </div>
           </div>
@@ -309,14 +379,35 @@ export default function Home() {
         </section>
 
         {/* Services Section */}
-        <section id="services" className="py-20 bg-white">
-          <div className="container mx-auto px-6 max-w-6xl">
+        <section id="services" className="py-20 bg-white relative overflow-hidden">
+          <div className="absolute inset-0 bg-[url('/images/grid.svg')] opacity-5"></div>
+          <div className="container mx-auto px-6 max-w-6xl relative">
             <AnimatedSection className="text-center mb-16">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Services</h2>
-              <div className="w-24 h-1 bg-blue-600 mx-auto"></div>
-              <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
+              <motion.h2 
+                className="text-3xl font-bold text-gray-900 mb-4"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+              >
+                Our Services
+              </motion.h2>
+              <motion.div 
+                className="w-24 h-1 bg-blue-600 mx-auto"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+              />
+              <motion.p 
+                className="text-gray-600 mt-4 max-w-2xl mx-auto"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                viewport={{ once: true }}
+              >
                 We offer a comprehensive range of technology services to help your business thrive in the digital age.
-              </p>
+              </motion.p>
             </AnimatedSection>
             <motion.div 
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
@@ -325,26 +416,59 @@ export default function Home() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
             >
-              <ServiceCard 
-                icon={isClient && <i className="fas fa-microchip"></i>}
-                title="IoT Infrastructure"
-                description="Design and implementation of scalable and secure IoT infrastructure tailored to your business needs."
-              />
-              <ServiceCard 
-                icon={isClient && <i className="fas fa-laptop-code"></i>}
-                title="Web Application Design"
-                description="Creating modern, responsive, and user-friendly web applications that drive engagement and growth."
-              />
-              <ServiceCard 
-                icon={isClient && <i className="fas fa-mobile-alt"></i>}
-                title="Mobile App Maintenance"
-                description="Reliable maintenance and support services to keep your mobile applications running smoothly."
-              />
-              <ServiceCard 
-                icon={isClient && <i className="fas fa-robot"></i>}
-                title="AI Agents & Services"
-                description="Building intelligent AI agents and providing cutting-edge AI services to automate and enhance your business operations."
-              />
+              {[
+                {
+                  icon: 'microchip',
+                  title: 'IoT Infrastructure',
+                  description: 'Design and implementation of scalable and secure IoT infrastructure tailored to your business needs.'
+                },
+                {
+                  icon: 'laptop-code',
+                  title: 'Web Application Design',
+                  description: 'Creating modern, responsive, and user-friendly web applications that drive engagement and growth.'
+                },
+                {
+                  icon: 'mobile-alt',
+                  title: 'Mobile App Maintenance',
+                  description: 'Reliable maintenance and support services to keep your mobile applications running smoothly.'
+                },
+                {
+                  icon: 'robot',
+                  title: 'AI Agents & Services',
+                  description: 'Building intelligent AI agents and providing cutting-edge AI services to automate and enhance your business operations.'
+                }
+              ].map((service, index) => (
+                <motion.div
+                  key={service.title}
+                  className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 group"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  whileHover={{ 
+                    y: -10,
+                    transition: { duration: 0.2 }
+                  }}
+                >
+                  <motion.div 
+                    className="bg-blue-100 p-4 rounded-lg inline-block mb-6 group-hover:bg-blue-600 transition duration-300"
+                    whileHover={{ scale: 1.1 }}
+                  >
+                    <div className="text-blue-600 text-3xl group-hover:text-white transition duration-300">
+                      {isClient && <i className={`fas fa-${service.icon}`}></i>}
+                    </div>
+                  </motion.div>
+                  <h4 className="text-xl font-semibold mb-3 text-gray-900">{service.title}</h4>
+                  <p className="text-gray-600 mb-6">{service.description}</p>
+                  <motion.a 
+                    href="#contact" 
+                    className="text-blue-600 font-medium hover:text-blue-800 transition duration-300 flex items-center"
+                    whileHover={{ x: 5 }}
+                  >
+                    Learn More <i className="fas fa-arrow-right ml-2"></i>
+                  </motion.a>
+                </motion.div>
+              ))}
             </motion.div>
           </div>
         </section>
@@ -365,27 +489,18 @@ export default function Home() {
                   <h3 className="text-xl font-bold mb-6">Get In Touch</h3>
                   <div className="mb-6">
                     <div className="flex items-center mb-4">
-                      <div className="bg-white/20 p-3 rounded-full mr-4">
-                        {isClient && <i className="fas fa-map-marker-alt"></i>}
-                      </div>
                       <div>
                         <h4 className="font-semibold">Our Location</h4>
                         <p className="text-blue-100">Telangana, India</p>
                       </div>
                     </div>
                     <div className="flex items-center mb-4">
-                      <div className="bg-white/20 p-3 rounded-full mr-4">
-                        {isClient && <i className="fas fa-envelope"></i>}
-                      </div>
                       <div>
                         <h4 className="font-semibold">Email Us</h4>
                         <p className="text-blue-100">support@drdotsolutions.com</p>
                       </div>
                     </div>
                     <div className="flex items-center">
-                      <div className="bg-white/20 p-3 rounded-full mr-4">
-                        {isClient && <i className="fas fa-phone"></i>}
-                      </div>
                       <div>
                         <h4 className="font-semibold">Call Us</h4>
                         <p className="text-blue-100">+91 9014119507</p>
@@ -481,78 +596,75 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center mb-4">
-                <div className="relative w-12 h-12 mr-3">
-                  <Image 
-                    src="/images/dr_logo.jpeg" 
-                    alt="DRDOT Solutions Logo" 
-                    layout="fill"
-                    objectFit="contain"
-                  />
-                </div>
-                <h3 className="text-xl font-bold">DR<span className="text-blue-400">DOT</span> Solutions</h3>
+      <footer className="bg-[#08192b] text-white py-12">
+        <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 items-start">
+          {/* Logo and About */}
+          <div>
+            <div className="flex items-center mb-4">
+              <div className="bg-white rounded-full p-2 shadow-lg mr-3">
+                <Image
+                  src="/images/dr_logo.png"
+                  alt="DRDOT Solutions Logo"
+                  width={48}
+                  height={48}
+                  style={{ objectFit: 'contain' }}
+                />
               </div>
-              <p className="text-gray-400 mb-4">
-                Transforming ideas into digital reality with innovative technology solutions.
-              </p>
-              <div className="flex space-x-4">
-                <a href="#" className="text-gray-400 hover:text-white transition duration-300">
-                  {isClient && <i className="fab fa-facebook-f"></i>}
-                </a>
-                <a href="#" className="text-gray-400 hover:text-white transition duration-300">
-                  {isClient && <i className="fab fa-twitter"></i>}
-                </a>
-                <a href="#" className="text-gray-400 hover:text-white transition duration-300">
-                  {isClient && <i className="fab fa-linkedin-in"></i>}
-                </a>
-                <a href="#" className="text-gray-400 hover:text-white transition duration-300">
-                  {isClient && <i className="fab fa-instagram"></i>}
-                </a>
-              </div>
+              <span className="text-3xl font-extrabold text-[#1ec28b]">DR</span>
+              <span className="text-3xl font-extrabold text-[#1ec28b] ml-1">DOT</span>
+              <span className="text-3xl font-extrabold text-white ml-1">Solutions</span>
             </div>
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-              <ul className="space-y-2">
-                <li><a href="#home" className="text-gray-400 hover:text-white transition duration-300">Home</a></li>
-                <li><a href="#about" className="text-gray-400 hover:text-white transition duration-300">About</a></li>
-                <li><a href="#services" className="text-gray-400 hover:text-white transition duration-300">Services</a></li>
-                <li><a href="#contact" className="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Our Services</h4>
-              <ul className="space-y-2">
-                <li><a href="#" className="text-gray-400 hover:text-white transition duration-300">IoT Infrastructure</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition duration-300">Web Application Design</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition duration-300">Mobile App Maintenance</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition duration-300">AI Agents & Services</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Contact Info</h4>
-              <ul className="space-y-2">
-                <li className="flex items-center">
-                  <i className="fas fa-map-marker-alt mr-2 text-blue-400"></i>
-                  <span className="text-gray-400">Telangana, India</span>
-                </li>
-                <li className="flex items-center">
-                  <i className="fas fa-envelope mr-2 text-blue-400"></i>
-                  <span className="text-gray-400">support@drdotsolutions.com</span>
-                </li>
-                <li className="flex items-center">
-                  <i className="fas fa-phone mr-2 text-blue-400"></i>
-                  <span className="text-gray-400">+91 9014119507</span>
-                </li>
-              </ul>
+            <p className="text-gray-200 mb-4">
+              Transforming ideas into digital reality with innovative technology solutions.
+            </p>
+            <div className="flex space-x-4">
+              <a href="#" className="text-[#1ec28b] hover:text-white transition"><i className="fab fa-facebook-f"></i></a>
+              <a href="#" className="text-[#1ec28b] hover:text-white transition"><i className="fab fa-twitter"></i></a>
+              <a href="#" className="text-[#1ec28b] hover:text-white transition"><i className="fab fa-linkedin-in"></i></a>
+              <a href="#" className="text-[#1ec28b] hover:text-white transition"><i className="fab fa-instagram"></i></a>
             </div>
           </div>
-          <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-            <p>© {new Date().getFullYear()} DRDOT Solutions. All rights reserved.</p>
+          {/* Quick Links */}
+          <div>
+            <h4 className="text-lg font-bold mb-4 text-[#1ec28b]">Quick Links</h4>
+            <ul className="space-y-2">
+              <li><a href="#home" className="text-gray-100 hover:text-[#1ec28b] transition">Home</a></li>
+              <li><a href="#about" className="text-gray-100 hover:text-[#1ec28b] transition">About</a></li>
+              <li><a href="#services" className="text-gray-100 hover:text-[#1ec28b] transition">Services</a></li>
+              <li><a href="#contact" className="text-gray-100 hover:text-[#1ec28b] transition">Contact</a></li>
+            </ul>
           </div>
+          {/* Services */}
+          <div>
+            <h4 className="text-lg font-bold mb-4 text-[#1ec28b]">Our Services</h4>
+            <ul className="space-y-2">
+              <li><a href="#" className="text-gray-100 hover:text-[#1ec28b] transition">IoT Infrastructure</a></li>
+              <li><a href="#" className="text-gray-100 hover:text-[#1ec28b] transition">Web Application Design</a></li>
+              <li><a href="#" className="text-gray-100 hover:text-[#1ec28b] transition">Mobile App Maintenance</a></li>
+              <li><a href="#" className="text-gray-100 hover:text-[#1ec28b] transition">AI Agents & Services</a></li>
+            </ul>
+          </div>
+          {/* Contact Info */}
+          <div>
+            <h4 className="text-lg font-bold mb-4 text-[#1ec28b]">Contact Info</h4>
+            <ul className="space-y-2">
+              <li className="flex items-center">
+                <i className="fas fa-map-marker-alt mr-2 text-[#1ec28b]"></i>
+                <span className="text-gray-100">Telangana, India</span>
+              </li>
+              <li className="flex items-center">
+                <i className="fas fa-envelope mr-2 text-[#1ec28b]"></i>
+                <span className="text-gray-100">support@drdotsolutions.com</span>
+              </li>
+              <li className="flex items-center">
+                <i className="fas fa-phone mr-2 text-[#1ec28b]"></i>
+                <span className="text-gray-100">+91 9014119507</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="border-t border-[#1ec28b]/30 mt-12 pt-8 text-center text-gray-400">
+          <p>© {new Date().getFullYear()} DRDOT Solutions. All rights reserved.</p>
         </div>
       </footer>
     </>
