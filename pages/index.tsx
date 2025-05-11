@@ -177,7 +177,7 @@ export default function Home() {
           <div className="flex items-center">
             <div className="flex items-center">
               <Link href="/" className="flex items-center cursor-pointer group">
-                <div className="relative w-20 h-16 mr-4 transition-all duration-300 group-hover:w-24">
+                <div className="relative w-20 h-16 mr-4 transition-all duration-300 group-hover:w-24 aspect-[4/3]">
                   <Image 
                     src="/images/dr_logo.png" 
                     alt="DRDOT Solutions Logo" 
@@ -602,12 +602,12 @@ export default function Home() {
           {/* Logo and About */}
           <div>
             <div className="flex items-center mb-4">
-              <div className="bg-white rounded-full p-2 shadow-lg mr-3">
+              <div className="bg-white rounded-full p-2 shadow-lg mr-3 relative w-12 h-12">
                 <Image
                   src="/images/dr_logo.png"
                   alt="DRDOT Solutions Logo"
-                  width={48}
-                  height={48}
+                  fill
+                  sizes="48px"
                   style={{ objectFit: 'contain' }}
                 />
               </div>
