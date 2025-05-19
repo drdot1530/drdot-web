@@ -17,7 +17,13 @@ const nextConfig = {
   reactStrictMode: true,
   // Enable image optimization
   images: {
-    domains: ['images.unsplash.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        pathname: '/**',
+      },
+    ],
   },
 }
 

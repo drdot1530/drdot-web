@@ -4,7 +4,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars, faCheck, faPhone, faEnvelope, faMapMarkerAlt, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faFacebookF, faTwitter, faLinkedinIn, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { faMicrochip, faLaptopCode, faMobileAlt, faRobot } from '@fortawesome/free-solid-svg-icons';
+
 
 interface FormData {
   fullname: string;
@@ -19,17 +23,6 @@ const fadeInUp = {
   visible: { 
     opacity: 1, 
     y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut"
-    }
-  }
-};
-
-const fadeIn = {
-  hidden: { opacity: 0 },
-  visible: { 
-    opacity: 1,
     transition: {
       duration: 0.6,
       ease: "easeOut"
@@ -74,39 +67,18 @@ const AnimatedSection = ({ children, className, delay = 0 }) => {
   );
 };
 
-// Animated service card
-const ServiceCard = ({ icon, title, description }) => {
-  const controls = useAnimation();
-  const [ref, inView] = useInView({
-    threshold: 0.2,
-    triggerOnce: true
-  });
-
-  useEffect(() => {
-    if (inView) {
-      controls.start("visible");
-    }
-  }, [controls, inView]);
-
+// Add the AnimatedHamburger component
+const AnimatedHamburger = ({ isOpen, onClick }) => {
   return (
-    <motion.div
-      ref={ref}
-      initial="hidden"
-      animate={controls}
-      variants={fadeInUp}
-      className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 group"
+    <div 
+      id="nav-icon1" 
+      className={`cursor-pointer w-[25px] h-[40px] relative ${isOpen ? 'open' : ''}`}
+      onClick={onClick}
     >
-      <div className="bg-blue-100 p-4 rounded-lg inline-block mb-6 group-hover:bg-blue-600 transition duration-300">
-        <div className="text-blue-600 text-3xl group-hover:text-white transition duration-300">
-          {icon}
-        </div>
-      </div>
-      <h4 className="text-xl font-semibold mb-3 text-gray-900">{title}</h4>
-      <p className="text-gray-600 mb-6">{description}</p>
-      <a href="#contact" className="text-blue-600 font-medium hover:text-blue-800 transition duration-300 flex items-center">
-        Learn More <i className="fas fa-arrow-right ml-2"></i>
-      </a>
-    </motion.div>
+      <span className="block absolute h-[3px] w-full bg-[#1ec28b] rounded-[5px] opacity-100 left-0 transition-all duration-250 ease-in-out" style={{ top: isOpen ? '25px' : '10px', transform: isOpen ? 'rotate(135deg)' : 'rotate(0deg)' }}></span>
+      <span className="block absolute h-[3px] w-full bg-[#1ec28b] rounded-[5px] opacity-100 left-0 transition-all duration-250 ease-in-out" style={{ top: '18px', opacity: isOpen ? 0 : 1, left: isOpen ? '10px' : '0' }}></span>
+      <span className="block absolute h-[3px] w-full bg-[#1ec28b] rounded-[5px] opacity-100 left-0 transition-all duration-250 ease-in-out" style={{ top: isOpen ? '20px' : '25px', transform: isOpen ? 'rotate(-135deg)' : 'rotate(0deg)' }}></span>
+    </div>
   );
 };
 
@@ -118,6 +90,7 @@ export default function Home() {
     message: '',
   });
   const [status, setStatus] = useState<string>('');
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [mounted, setMounted] = useState<boolean>(false);
 
@@ -131,21 +104,29 @@ export default function Home() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsSubmitting(true);
     setStatus('Sending...');
+    
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(formData),
       });
+      
+      const data = await res.json();
+      
       if (res.ok) {
         setStatus('Message sent successfully!');
         setFormData({fullname: '', email: '', phone: '', message: ''});
       } else {
-        setStatus('Failed to send message.');
+        setStatus(data.message || 'Failed to send message.');
       }
     } catch (error) {
-      setStatus('Failed to send message.');
+      console.error('Error sending message:', error);
+      setStatus('Failed to send message. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -192,59 +173,67 @@ export default function Home() {
             </div>
           </div>
           <nav className="space-x-8 text-gray-600 font-medium hidden md:flex">
-            <a href="#home" className="hover:text-blue-600 transition duration-300 relative group">
+            <a href="#home" className="hover:text-blue-600 transition duration-300">
               Home
-              <span className="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-green-900 group-hover:w-3/6"></span>
-              <span className="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-green-900 group-hover:w-3/6"></span>
             </a>
-            <a href="#services" className="hover:text-blue-600 transition duration-300 relative group">
+            <a href="#services" className="hover:text-blue-600 transition duration-300">
               Services
-              <span className="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-green-900 group-hover:w-3/6"></span>
-              <span className="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-green-900 group-hover:w-3/6"></span>
             </a>
-            <a href="#about" className="hover:text-blue-600 transition duration-300 relative group">
+            <a href="#about" className="hover:text-blue-600 transition duration-300">
               About
-              <span className="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-green-900 group-hover:w-3/6"></span>
-              <span className="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-green-900 group-hover:w-3/6"></span>
             </a>
-            <a href="#contact" className="hover:text-blue-600 transition duration-300 relative group">
+            <a href="#contact" className="hover:text-blue-600 transition duration-300">
               Contact
-              <span className="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-green-900 group-hover:w-3/6"></span>
-              <span className="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-green-900 group-hover:w-3/6"></span>
             </a>
           </nav>
-          <button
-            className="md:hidden text-gray-600 focus:outline-none"
-            aria-label="Toggle menu"
-            onClick={toggleMenu}
-          >
-            {isClient && <i className="fas fa-bars fa-lg"></i>}
-          </button>
+          <div className="md:hidden">
+            <AnimatedHamburger isOpen={menuOpen} onClick={toggleMenu} />
+          </div>
         </div>
-        {menuOpen && (
-          <nav className="bg-white shadow-md md:hidden">
-            <a href="#home" className="block px-6 py-3 border-b border-gray-200 hover:bg-blue-50 relative group">
-              Home
-              <span className="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-blue-600 group-hover:w-3/6"></span>
-              <span className="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-blue-600 group-hover:w-3/6"></span>
-            </a>
-            <a href="#services" className="block px-6 py-3 border-b border-gray-200 hover:bg-blue-50 relative group">
-              Services
-              <span className="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-blue-600 group-hover:w-3/6"></span>
-              <span className="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-blue-600 group-hover:w-3/6"></span>
-            </a>
-            <a href="#about" className="block px-6 py-3 border-b border-gray-200 hover:bg-blue-50 relative group">
-              About
-              <span className="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-blue-600 group-hover:w-3/6"></span>
-              <span className="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-blue-600 group-hover:w-3/6"></span>
-            </a>
-            <a href="#contact" className="block px-6 py-3 hover:bg-blue-50 relative group">
-              Contact
-              <span className="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-blue-600 group-hover:w-3/6"></span>
-              <span className="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-blue-600 group-hover:w-3/6"></span>
-            </a>
+        {/* Mobile Menu */}
+        <motion.div
+          className="md:hidden"
+          initial={false}
+          animate={menuOpen ? "open" : "closed"}
+          variants={{
+            open: { opacity: 1, height: "auto" },
+            closed: { opacity: 0, height: 0 }
+          }}
+          transition={{ duration: 0.3 }}
+        >
+          <nav className="bg-white shadow-lg">
+            <div className="px-6 py-3 space-y-1">
+              <a 
+                href="#home" 
+                className="block py-3 px-4 rounded-lg hover:bg-blue-50 text-gray-600 hover:text-blue-600 transition duration-300"
+                onClick={() => setMenuOpen(false)}
+              >
+                Home
+              </a>
+              <a 
+                href="#services" 
+                className="block py-3 px-4 rounded-lg hover:bg-blue-50 text-gray-600 hover:text-blue-600 transition duration-300"
+                onClick={() => setMenuOpen(false)}
+              >
+                Services
+              </a>
+              <a 
+                href="#about" 
+                className="block py-3 px-4 rounded-lg hover:bg-blue-50 text-gray-600 hover:text-blue-600 transition duration-300"
+                onClick={() => setMenuOpen(false)}
+              >
+                About
+              </a>
+              <a 
+                href="#contact" 
+                className="block py-3 px-4 rounded-lg hover:bg-blue-50 text-gray-600 hover:text-blue-600 transition duration-300"
+                onClick={() => setMenuOpen(false)}
+              >
+                Contact
+              </a>
+            </div>
           </nav>
-        )}
+        </motion.div>
       </header>
 
       <main className="pt-20">
@@ -419,22 +408,22 @@ export default function Home() {
             >
               {[
                 {
-                  icon: 'microchip',
+                  icon: faMicrochip,
                   title: 'IoT Infrastructure',
                   description: 'Design and implementation of scalable and secure IoT infrastructure tailored to your business needs.'
                 },
                 {
-                  icon: 'laptop-code',
+                  icon: faLaptopCode,
                   title: 'Web Application Design',
                   description: 'Creating modern, responsive, and user-friendly web applications that drive engagement and growth.'
                 },
                 {
-                  icon: 'mobile-alt',
+                  icon: faMobileAlt,
                   title: 'Mobile App Maintenance',
                   description: 'Reliable maintenance and support services to keep your mobile applications running smoothly.'
                 },
                 {
-                  icon: 'robot',
+                  icon: faRobot,
                   title: 'AI Agents & Services',
                   description: 'Building intelligent AI agents and providing cutting-edge AI services to automate and enhance your business operations.'
                 }
@@ -456,17 +445,17 @@ export default function Home() {
                     whileHover={{ scale: 1.1 }}
                   >
                     <div className="text-blue-600 text-3xl group-hover:text-white transition duration-300">
-                      {isClient && <i className={`fas fa-${service.icon}`}></i>}
+                      <FontAwesomeIcon icon={service.icon} />
                     </div>
                   </motion.div>
                   <h4 className="text-xl font-semibold mb-3 text-gray-900">{service.title}</h4>
                   <p className="text-gray-600 mb-6">{service.description}</p>
                   <motion.a 
-                    href="#contact" 
+                    href="#contact"
                     className="text-blue-600 font-medium hover:text-blue-800 transition duration-300 flex items-center"
                     whileHover={{ x: 5 }}
                   >
-                    Learn More <i className="fas fa-arrow-right ml-2"></i>
+                    Learn More <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
                   </motion.a>
                 </motion.div>
               ))}
@@ -490,9 +479,11 @@ export default function Home() {
                   <h3 className="text-xl font-bold mb-6">Get In Touch</h3>
                   <div className="mb-6">
                     <div className="flex items-center mb-4">
-                      <div>
-                        <h4 className="font-semibold">Our Location</h4>
-                        <p className="text-blue-100">Telangana, India</p>
+                      <div className="flex items-center mb-4">
+                        <div>
+                          <h4 className="font-semibold">Our Location</h4>
+                          <p className="text-blue-100">Telangana, India</p>
+                        </div>
                       </div>
                     </div>
                     <div className="flex items-center mb-4">
@@ -510,16 +501,16 @@ export default function Home() {
                   </div>
                   <div className="flex space-x-4 mt-8">
                     <a href="#" className="bg-white/20 p-3 rounded-full hover:bg-white/30 transition duration-300">
-                      {isClient && <i className="fab fa-facebook-f"></i>}
+                      <FontAwesomeIcon icon={faFacebookF} />
                     </a>
                     <a href="#" className="bg-white/20 p-3 rounded-full hover:bg-white/30 transition duration-300">
-                      {isClient && <i className="fab fa-twitter"></i>}
+                      <FontAwesomeIcon icon={faTwitter} />
                     </a>
                     <a href="#" className="bg-white/20 p-3 rounded-full hover:bg-white/30 transition duration-300">
-                      {isClient && <i className="fab fa-linkedin-in"></i>}
+                      <FontAwesomeIcon icon={faLinkedinIn} />
                     </a>
                     <a href="#" className="bg-white/20 p-3 rounded-full hover:bg-white/30 transition duration-300">
-                      {isClient && <i className="fab fa-instagram"></i>}
+                      <FontAwesomeIcon icon={faInstagram} />
                     </a>
                   </div>
                 </div>
@@ -527,7 +518,9 @@ export default function Home() {
                   <form onSubmit={handleSubmit} className="space-y-6" noValidate>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label htmlFor="fullname" className="block text-gray-700 font-medium mb-2">Full Name</label>
+                        <label htmlFor="fullname" className="block text-gray-700 font-medium mb-2">
+                          Full Name
+                        </label>
                         <input
                           type="text"
                           id="fullname"
@@ -540,7 +533,9 @@ export default function Home() {
                         />
                       </div>
                       <div>
-                        <label htmlFor="email" className="block text-gray-700 font-medium mb-2">Email</label>
+                        <label htmlFor="email" className="block text-gray-700 font-medium mb-2">
+                          Email
+                        </label>
                         <input
                           type="email"
                           id="email"
@@ -554,7 +549,9 @@ export default function Home() {
                       </div>
                     </div>
                     <div>
-                      <label htmlFor="phone" className="block text-gray-700 font-medium mb-2">Phone Number</label>
+                      <label htmlFor="phone" className="block text-gray-700 font-medium mb-2">
+                        Phone Number
+                      </label>
                       <input
                         type="tel"
                         id="phone"
@@ -566,7 +563,9 @@ export default function Home() {
                       />
                     </div>
                     <div>
-                      <label htmlFor="message" className="block text-gray-700 font-medium mb-2">Message</label>
+                      <label htmlFor="message" className="block text-gray-700 font-medium mb-2">
+                        Message
+                      </label>
                       <textarea
                         id="message"
                         name="message"
@@ -580,13 +579,22 @@ export default function Home() {
                     </div>
                     <button
                       type="submit"
-                      className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300"
+                      disabled={isSubmitting}
+                      className={`w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition duration-300 ${
+                        isSubmitting 
+                          ? 'opacity-75 cursor-not-allowed' 
+                          : 'hover:bg-blue-700'
+                      }`}
                     >
-                      Send Message
+                      {isSubmitting ? 'Sending...' : 'Send Message'}
                     </button>
                   </form>
                   {status && (
-                    <div className={`mt-4 p-4 rounded-lg ${status.includes('success') ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+                    <div
+                      className={`mt-4 p-4 rounded-lg ${
+                        status.includes('success') ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
+                      }`}
+                    >
                       {status}
                     </div>
                   )}
@@ -599,7 +607,6 @@ export default function Home() {
 
       <footer className="bg-[#08192b] text-white py-12">
         <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 items-start">
-          {/* Logo and About */}
           <div>
             <div className="flex items-center mb-4">
               <div className="bg-white rounded-full p-2 shadow-lg mr-3 relative w-12 h-12">
@@ -619,46 +626,83 @@ export default function Home() {
               Transforming ideas into digital reality with innovative technology solutions.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-[#1ec28b] hover:text-white transition"><i className="fab fa-facebook-f"></i></a>
-              <a href="#" className="text-[#1ec28b] hover:text-white transition"><i className="fab fa-twitter"></i></a>
-              <a href="#" className="text-[#1ec28b] hover:text-white transition"><i className="fab fa-linkedin-in"></i></a>
-              <a href="#" className="text-[#1ec28b] hover:text-white transition"><i className="fab fa-instagram"></i></a>
+              <a href="#" className="text-[#1ec28b] hover:text-white transition">
+                <FontAwesomeIcon icon={faFacebookF} />
+              </a>
+              <a href="#" className="text-[#1ec28b] hover:text-white transition">
+                <FontAwesomeIcon icon={faTwitter} />
+              </a>
+              <a href="#" className="text-[#1ec28b] hover:text-white transition">
+                <FontAwesomeIcon icon={faLinkedinIn} />
+              </a>
+              <a href="#" className="text-[#1ec28b] hover:text-white transition">
+                <FontAwesomeIcon icon={faInstagram} />
+              </a>
             </div>
           </div>
-          {/* Quick Links */}
           <div>
             <h4 className="text-lg font-bold mb-4 text-[#1ec28b]">Quick Links</h4>
             <ul className="space-y-2">
-              <li><a href="#home" className="text-gray-100 hover:text-[#1ec28b] transition">Home</a></li>
-              <li><a href="#about" className="text-gray-100 hover:text-[#1ec28b] transition">About</a></li>
-              <li><a href="#services" className="text-gray-100 hover:text-[#1ec28b] transition">Services</a></li>
-              <li><a href="#contact" className="text-gray-100 hover:text-[#1ec28b] transition">Contact</a></li>
+              <li>
+                <a href="#home" className="text-gray-100 hover:text-[#1ec28b] transition">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="#about" className="text-gray-100 hover:text-[#1ec28b] transition">
+                  About
+                </a>
+              </li>
+              <li>
+                <a href="#services" className="text-gray-100 hover:text-[#1ec28b] transition">
+                  Services
+                </a>
+              </li>
+              <li>
+                <a href="#contact" className="text-gray-100 hover:text-[#1ec28b] transition">
+                  Contact
+                </a>
+              </li>
             </ul>
           </div>
-          {/* Services */}
           <div>
             <h4 className="text-lg font-bold mb-4 text-[#1ec28b]">Our Services</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-100 hover:text-[#1ec28b] transition">IoT Infrastructure</a></li>
-              <li><a href="#" className="text-gray-100 hover:text-[#1ec28b] transition">Web Application Design</a></li>
-              <li><a href="#" className="text-gray-100 hover:text-[#1ec28b] transition">Mobile App Maintenance</a></li>
-              <li><a href="#" className="text-gray-100 hover:text-[#1ec28b] transition">AI Agents & Services</a></li>
+              <li>
+                <a href="#" className="text-gray-100 hover:text-[#1ec28b] transition">
+                  IoT Infrastructure
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-100 hover:text-[#1ec28b] transition">
+                  Web Application Design
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-100 hover:text-[#1ec28b] transition">
+                  Mobile App Maintenance
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-gray-100 hover:text-[#1ec28b] transition">
+                  AI Agents & Services
+                </a>
+              </li>
             </ul>
           </div>
-          {/* Contact Info */}
           <div>
             <h4 className="text-lg font-bold mb-4 text-[#1ec28b]">Contact Info</h4>
             <ul className="space-y-2">
               <li className="flex items-center">
-                <i className="fas fa-map-marker-alt mr-2 text-[#1ec28b]"></i>
+                <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2 text-[#1ec28b]" />
                 <span className="text-gray-100">Telangana, India</span>
               </li>
               <li className="flex items-center">
-                <i className="fas fa-envelope mr-2 text-[#1ec28b]"></i>
+                <FontAwesomeIcon icon={faEnvelope} className="mr-2 text-[#1ec28b]" />
                 <span className="text-gray-100">support@drdotsolutions.com</span>
               </li>
               <li className="flex items-center">
-                <i className="fas fa-phone mr-2 text-[#1ec28b]"></i>
+                <FontAwesomeIcon icon={faPhone} className="mr-2 text-[#1ec28b]" />
                 <span className="text-gray-100">+91 9014119507</span>
               </li>
             </ul>
@@ -671,3 +715,4 @@ export default function Home() {
     </>
   );
 }
+
