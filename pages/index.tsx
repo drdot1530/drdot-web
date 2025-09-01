@@ -215,6 +215,7 @@ export default function Home() {
           name="description"
           content="DRDOT Solutions provides innovative IoT infrastructure, web and mobile application design, and AI services for businesses."
         />
+        <link rel="icon" href="/images/dr_logo.png" />
       </Head>
 
       <header className="bg-white shadow-md fixed w-full z-10">
@@ -649,7 +650,7 @@ export default function Home() {
                     <div className="flex items-center">
                       <div>
                         <h4 className="font-semibold">Call Us</h4>
-                        <p className="text-blue-100">+91 7981325861</p>
+                        <p className="text-blue-100">+91 9014119507</p>
                       </div>
                     </div>
                   </div>
@@ -933,7 +934,7 @@ export default function Home() {
                   icon={faPhone}
                   className="mr-2 text-[#1ec28b]"
                 />
-                <span className="text-gray-100">+91 7981325861</span>
+                <span className="text-gray-100">+91 9014119507</span>
               </li>
             </ul>
           </div>

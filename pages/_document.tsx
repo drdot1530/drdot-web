@@ -8,6 +8,7 @@ export default function Document() {
           rel="stylesheet" 
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
         />
+        <link rel="icon" href="/images/dr_logo.png" />
       </Head>
       <body>
         <Main />
@@ -16,3 +17,4 @@ export default function Document() {
     </Html>
   )
 } 
+
