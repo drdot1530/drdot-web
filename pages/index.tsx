@@ -12,6 +12,7 @@ import {
   faEnvelope,
   faMapMarkerAlt,
   faArrowRight,
+  faLock,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faFacebookF,
@@ -538,8 +539,8 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 viewport={{ once: true }}
               >
-                We offer a comprehensive range of technology services to help
-                your business thrive in the digital age.
+                Empower your business in the digital age with our technology
+                services.
               </motion.p>
             </AnimatedSection>
             <motion.div
@@ -613,6 +614,102 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Products Section (Modern, Concise Feature Block) */}
+        <section
+          id="products"
+          className="py-20 bg-gray-50 relative overflow-hidden"
+        >
+          <div className="absolute inset-0 bg-[url('/images/grid.svg')] opacity-5"></div>
+          <div className="container mx-auto px-6 max-w-5xl relative">
+            <AnimatedSection className="text-center mb-16">
+              <motion.h2
+                className="text-3xl font-bold text-gray-900 mb-4"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+              >
+                Our Flagship Product
+              </motion.h2>
+              <motion.div
+                className="w-24 h-1 bg-blue-600 mx-auto"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+              />
+              <motion.p
+                className="text-gray-600 mt-4 max-w-2xl mx-auto"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                viewport={{ once: true }}
+              >
+                Innovative, proprietary technology designed to eliminate
+                critical business losses.
+              </motion.p>
+            </AnimatedSection>
+
+            {/* VCU Product Feature Block */}
+            <motion.div
+              className="bg-white p-8 md:p-12 rounded-xl shadow-2xl border-t-4 border-blue-600 flex flex-col items-center text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              {/* VCU Logo (Reduced Space) */}
+              <motion.div
+                className="flex-shrink-0 mb-6"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                {/*
+          IMPORTANT: Update the src path to your logo. 
+          The 'w-24' class keeps the logo small and modern.
+        */}
+                <img
+                  src="/images/vcuLogo.png"
+                  alt="VCU (Vehicle Check Unit) Logo"
+                  className="w-48 h-40 object-contain mx-auto"
+                />
+              </motion.div>
+
+              {/* Product Description (Concise) */}
+              <motion.div
+                className="max-w-3xl mx-auto"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                viewport={{ once: true }}
+              >
+                <h3 className="text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
+                  Stop Fuel Theft. Get Alerts in{" "}
+                  <span className="text-blue-600">3 Seconds</span>.
+                </h3>
+                <p className="text-gray-700 text-xl leading-relaxed mb-8 max-w-2xl mx-auto">
+                  <strong>VCU</strong> is an automated NPR system that provides{" "}
+                  <strong>instant, guaranteed alerts </strong>
+                  on stolen and fraudulent plates, eliminating losses before
+                  they occur.
+                </p>
+                <motion.a
+                  href="https://vcu-tau.vercel.app//"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-10 py-3 bg-blue-600 text-white font-semibold text-lg rounded-full shadow-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105"
+                  whileHover={{ x: 3 }}
+                >
+                  Discover VCU
+                  <FontAwesomeIcon icon={faArrowRight} className="ml-3" />
+                </motion.a>
+              </motion.div>
+            </motion.div>
+          </div>
+        </section>
+
         {/* Contact Section */}
         <section id="contact" className="py-20 bg-gray-50">
           <div className="container mx-auto px-6 max-w-4xl">
@@ -622,8 +719,8 @@ export default function Home() {
               </h2>
               <div className="w-24 h-1 bg-blue-600 mx-auto"></div>
               <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
-                Have a project in mind? Get in touch with us and let's discuss
-                how we can help bring your ideas to life.
+                Ideas await. Contact us to start turning your concepts into
+                reality.
               </p>
             </AnimatedSection>
             <AnimatedSection className="bg-white rounded-xl shadow-xl overflow-hidden">
@@ -691,7 +788,7 @@ export default function Home() {
                           onChange={handleChange}
                           required
                           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-300"
-                          placeholder="John"
+                          placeholder="Your Name"
                         />
                       </div>
                       <div>
@@ -709,7 +806,7 @@ export default function Home() {
                           onChange={handleChange}
                           required
                           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-300"
-                          placeholder="john@example.com"
+                          placeholder="name@example.com"
                         />
                       </div>
                     </div>
@@ -727,7 +824,7 @@ export default function Home() {
                         value={formData.phone}
                         onChange={handleChange}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-300"
-                        placeholder="8551234567"
+                        placeholder="10-digit number"
                       />
                     </div>
                     <div>
