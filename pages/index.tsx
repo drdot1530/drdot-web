@@ -94,9 +94,9 @@ function ServicesExplorer() {
   const active = SERVICES[activeIndex];
 
   return (
-    <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 lg:min-h-[480px]">
-      <motion.div
-        className="flex lg:flex-col gap-2 overflow-x-auto pb-2 lg:pb-0 lg:overflow-visible snap-x snap-mandatory lg:snap-none lg:w-[min(100%,380px)] shrink-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+    <div className="flex flex-col lg:flex-row gap-4 lg:gap-8 lg:min-h-[480px]">
+      <div
+        className="flex flex-col gap-2 w-full lg:w-[min(100%,380px)] shrink-0"
         role="tablist"
         aria-label="Services"
       >
@@ -109,7 +109,7 @@ function ServicesExplorer() {
               role="tab"
               aria-selected={isActive}
               onClick={() => setActiveIndex(index)}
-              className={`snap-start shrink-0 lg:shrink flex items-center gap-3 px-4 py-3.5 rounded-2xl text-left transition-all duration-300 border min-w-[200px] lg:min-w-0 lg:w-full ${
+              className={`flex w-full items-center gap-3 px-4 py-3.5 rounded-2xl text-left transition-all duration-300 border ${
                 isActive
                   ? "bg-brand-muted border-brand text-brand-foreground shadow-sm"
                   : "bg-surface border-gray-200 text-ink-muted hover:border-brand-subtle hover:bg-brand-muted/50"
@@ -125,7 +125,7 @@ function ServicesExplorer() {
                 <FontAwesomeIcon icon={service.icon} />
               </span>
               <span className="min-w-0">
-                <span className="block text-sm font-bold leading-tight truncate lg:whitespace-normal">
+                <span className="block text-sm font-bold leading-tight">
                   {service.title}
                 </span>
                 <span
@@ -139,9 +139,9 @@ function ServicesExplorer() {
             </button>
           );
         })}
-      </motion.div>
+      </div>
 
-      <div className="relative flex-1 min-h-[340px] lg:min-h-0 rounded-3xl overflow-hidden border border-gray-200 bg-surface shadow-sm">
+      <div className="relative z-0 flex-1 min-h-[300px] sm:min-h-[340px] lg:min-h-0 rounded-3xl overflow-hidden border border-gray-200 bg-surface shadow-sm">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeIndex}
@@ -150,19 +150,19 @@ function ServicesExplorer() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.98, y: -8 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute inset-0 bg-surface p-8 md:p-10 flex flex-col justify-between text-ink"
+            className="absolute inset-0 bg-surface p-6 sm:p-8 md:p-10 flex flex-col justify-between text-ink"
           >
             <div
-              className="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-brand/10 blur-3xl"
+              className="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-brand/10 blur-3xl pointer-events-none"
               aria-hidden
             />
             <FontAwesomeIcon
               icon={active.icon}
-              className="absolute top-6 right-6 md:top-8 md:right-8 text-[7rem] md:text-[9rem] text-brand/10 pointer-events-none"
+              className="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 text-[5rem] sm:text-[7rem] md:text-[9rem] text-brand/10 pointer-events-none"
               aria-hidden
             />
 
-            <div className="relative z-10">
+            <div className="relative z-[1]">
               <span className="inline-block px-3 py-1 text-xs font-bold uppercase tracking-widest bg-brand-muted text-brand-foreground rounded-full border border-brand-subtle mb-4">
                 {active.tag}
               </span>
@@ -173,7 +173,7 @@ function ServicesExplorer() {
             </div>
 
             <motion.div
-              className="relative z-10 mt-auto"
+              className="relative z-[1] mt-auto"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.08, duration: 0.3 }}
@@ -189,7 +189,7 @@ function ServicesExplorer() {
         </AnimatePresence>
 
         <motion.div
-          className="absolute bottom-0 left-0 right-0 h-1 bg-surface-muted z-20"
+          className="absolute bottom-0 left-0 right-0 h-1 bg-surface-muted z-[2]"
           aria-hidden
         >
           <motion.div
@@ -256,7 +256,7 @@ const AnimatedSection = ({ children, className, delay = 0 }) => {
       initial="hidden"
       animate={controls}
       variants={fadeInUp}
-      className={className}
+      className={`relative z-0 ${className ?? ""}`.trim()}
     >
       {children}
     </motion.div>
@@ -398,7 +398,7 @@ export default function Home() {
         <link rel="icon" href="/images/dr_logo.png" />
       </Head>
 
-      <header className="bg-white shadow-md fixed w-full z-10">
+      <header className="bg-white shadow-md fixed top-0 left-0 right-0 w-full z-50 isolate">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center">
             <div className="flex items-center">
@@ -495,7 +495,7 @@ export default function Home() {
         </motion.div>
       </header>
 
-      <main className="pt-20">
+      <main className="relative z-0 pt-20">
         {/* Hero Section */}
         <section
           id="home"
@@ -656,7 +656,7 @@ export default function Home() {
         </section>
 
         {/* Services Section — interactive explorer */}
-        <section id="services" className="py-20 bg-surface">
+        <section id="services" className="relative z-0 py-20 bg-surface isolate">
           <div className="container mx-auto px-6 max-w-6xl">
             <AnimatedSection className="text-center mb-14 md:mb-16">
               <motion.span
@@ -1108,4 +1108,8 @@ export default function Home() {
       </footer>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  return { props: {} };
 }
