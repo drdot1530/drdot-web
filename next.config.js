@@ -5,6 +5,10 @@ const nextConfig = {
       {
         source: '/:path*',
         headers: [
+           {
+            key: 'Cache-Control',
+            value: 'no-cache, no-store, must-revalidate',
+          },
           {
             key: 'Content-Security-Policy',
             value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://apis.google.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:;"
