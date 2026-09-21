@@ -309,11 +309,6 @@ export default function Home() {
   const [status, setStatus] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
-  const [mounted, setMounted] = useState<boolean>(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -382,20 +377,90 @@ export default function Home() {
     setIsClient(true);
   }, []);
 
-  // Don't render animations until after hydration
-  if (!mounted) {
-    return null;
-  }
+  const siteUrl = "https://drdotsolutions.com";
+  const pageTitle =
+    "DRDOT Solutions | IT Support, Cloud, Web, AI & PCB Design in Australia";
+  const pageDescription =
+    "DRDOT Solutions is your technology partner in Victoria, Australia. IT support & networking, Wi-Fi, email & cloud, websites & mobile apps, custom AI software, PCB design, 3D enclosures, and growth marketing.";
+
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: "DRDOT Solutions",
+    url: siteUrl,
+    logo: `${siteUrl}/images/dr_logo.png`,
+    image: `${siteUrl}/images/og-cover.png`,
+    description: pageDescription,
+    email: "support@drdotsolutions.com",
+    telephone: "+61452547143",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "20 Jasmine Grove",
+      addressLocality: "Officer",
+      addressRegion: "VIC",
+      postalCode: "3809",
+      addressCountry: "AU",
+    },
+    areaServed: {
+      "@type": "Country",
+      name: "Australia",
+    },
+    priceRange: "$$",
+    sameAs: [],
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Technology Services",
+      itemListElement: SERVICES.map((service) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: service.title,
+          description: service.description,
+        },
+      })),
+    },
+  };
 
   return (
     <>
       <Head>
-        <title>DRDOT Solutions - Complete Technology Solutions for Businesses</title>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
         <meta
-          name="description"
-          content="DRDOT Solutions delivers IT support, cloud solutions, web and mobile apps, custom AI software, PCB design, 3D enclosures, and growth marketing for businesses."
+          name="keywords"
+          content="DRDOT Solutions, IT support Australia, cloud services Victoria, web development, mobile apps, AI software, PCB design, enclosure design, growth marketing, Officer VIC"
         />
+        <meta name="author" content="DRDOT Solutions" />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
+        <link rel="canonical" href={`${siteUrl}/`} />
         <link rel="icon" href="/images/dr_logo.png" />
+        <link rel="apple-touch-icon" href="/images/dr_logo.png" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="en_AU" />
+        <meta property="og:url" content={`${siteUrl}/`} />
+        <meta property="og:site_name" content="DRDOT Solutions" />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:image" content={`${siteUrl}/images/og-cover.png`} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta
+          property="og:image:alt"
+          content="DRDOT Solutions — Complete Technology Solutions for Businesses"
+        />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content={`${siteUrl}/images/og-cover.png`} />
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd),
+          }}
+        />
       </Head>
 
       <header className="bg-white shadow-md fixed top-0 left-0 right-0 w-full z-50 isolate">
