@@ -379,9 +379,9 @@ export default function Home() {
 
   const siteUrl = "https://drdotsolutions.com";
   const pageTitle =
-    "DRDOT Solutions | IT Support, Cloud, Web, AI & PCB Design in Australia";
+    "DRDOT Solutions - Transforming Ideas into Digital Reality";
   const pageDescription =
-    "DRDOT Solutions is your technology partner in Victoria, Australia. IT support & networking, Wi-Fi, email & cloud, websites & mobile apps, custom AI software, PCB design, 3D enclosures, and growth marketing.";
+    "DRDOT Solutions is your technology partner. IT support & networking, Wi-Fi, email & cloud, websites & mobile apps, custom AI software, PCB design, 3D enclosures, and growth marketing.";
 
   const organizationJsonLd = {
     "@context": "https://schema.org",
@@ -428,7 +428,7 @@ export default function Home() {
         <meta name="description" content={pageDescription} />
         <meta
           name="keywords"
-          content="DRDOT Solutions, IT support Australia, cloud services Victoria, web development, mobile apps, AI software, PCB design, enclosure design, growth marketing, Officer VIC"
+          content="DRDOT Solutions, IT support, cloud services, web development, mobile apps, AI software, PCB design, enclosure design, growth marketing, food ordering system, NxtBite, Officer VIC"
         />
         <meta name="author" content="DRDOT Solutions" />
         <meta name="robots" content="index, follow, max-image-preview:large" />

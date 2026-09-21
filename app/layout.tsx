@@ -3,9 +3,9 @@ import type { ReactNode } from "react";
 
 const siteUrl = "https://drdotsolutions.com";
 const title =
-  "DRDOT Solutions | IT Support, Cloud, Web, AI & PCB Design in Australia";
+  "DRDOT Solutions - Transforming Ideas into Digital Reality";
 const description =
-  "DRDOT Solutions is your technology partner in Victoria, Australia. IT support & networking, Wi-Fi, email & cloud, websites & mobile apps, custom AI software, PCB design, 3D enclosures, and growth marketing.";
+  "DRDOT Solutions is your technology partner. IT support & networking, Wi-Fi, email & cloud, websites & mobile apps, custom AI software, PCB design, 3D enclosures, and growth marketing.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -25,6 +25,8 @@ export const metadata: Metadata = {
     "PCB design",
     "enclosure design",
     "growth marketing",
+    "food ordering system",
+    "NxtBite",
     "Officer VIC",
   ],
   authors: [{ name: "DRDOT Solutions" }],
