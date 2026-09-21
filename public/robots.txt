@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Host: https://drdotsolutions.com
+Sitemap: https://drdotsolutions.com/sitemap.xml

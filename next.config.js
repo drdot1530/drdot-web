@@ -12,6 +12,44 @@ const nextConfig = {
         ],
       },
       {
+        source: '/sitemap.xml',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=3600, must-revalidate',
+          },
+          {
+            key: 'CDN-Cache-Control',
+            value: 'public, max-age=3600',
+          },
+          {
+            key: 'Vercel-CDN-Cache-Control',
+            value: 'public, max-age=3600',
+          },
+          {
+            key: 'Content-Type',
+            value: 'application/xml; charset=utf-8',
+          },
+        ],
+      },
+      {
+        source: '/robots.txt',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=3600, must-revalidate',
+          },
+          {
+            key: 'CDN-Cache-Control',
+            value: 'public, max-age=3600',
+          },
+          {
+            key: 'Vercel-CDN-Cache-Control',
+            value: 'public, max-age=3600',
+          },
+        ],
+      },
+      {
         source: '/:path*',
         headers: [
           {
