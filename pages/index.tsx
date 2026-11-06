@@ -404,7 +404,7 @@ export default function Home() {
       name: "Australia",
     },
     priceRange: "$$",
-    sameAs: [],
+    sameAs: ["https://www.linkedin.com/company/drdot-solutions/"],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Technology Services",
@@ -1042,32 +1042,18 @@ export default function Home() {
               Transforming ideas into digital reality with innovative technology
               solutions.
             </p>
-            {/* <div className="flex space-x-4">
+            <div className="flex">
               <a
-                href="#"
-                className="text-brand hover:text-brand-light transition"
+                href="https://www.linkedin.com/company/drdot-solutions/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="DRDOT Solutions on LinkedIn"
+                className="inline-flex items-center gap-2 text-brand hover:text-brand-light transition font-medium"
               >
-                <FontAwesomeIcon icon={faFacebookF} />
+                <FontAwesomeIcon icon={faLinkedinIn} className="text-xl" />
+                <span>LinkedIn</span>
               </a>
-              <a
-                href="#"
-                className="text-brand hover:text-brand-light transition"
-              >
-                <FontAwesomeIcon icon={faTwitter} />
-              </a>
-              <a
-                href="#"
-                className="text-brand hover:text-brand-light transition"
-              >
-                <FontAwesomeIcon icon={faLinkedinIn} />
-              </a>
-              <a
-                href="#"
-                className="text-brand hover:text-brand-light transition"
-              >
-                <FontAwesomeIcon icon={faInstagram} />
-              </a>
-            </div> */}
+            </div>
           </div>
           <div>
             <h4 className="text-lg font-bold mb-4 text-brand">
