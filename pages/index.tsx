@@ -395,11 +395,9 @@ export default function Home() {
     telephone: "+61452547143",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "20 Jasmine Grove",
       addressLocality: "Officer",
-      addressRegion: "VIC",
+      addressRegion: "Victoria",
       postalCode: "3809",
-      addressCountry: "AU",
     },
     areaServed: {
       "@type": "Country",
@@ -879,7 +877,9 @@ export default function Home() {
                     <div className="mb-4">
                       <h4 className="font-semibold">Australia</h4>
                       <p className="text-ink-muted">
-                        20 Jasmine Grove, Officer, Vic, 3809
+                        Officer,
+                        <br />
+                        Victoria, 3809
                       </p>
                     </div>
                     <div className="mb-4">
@@ -1136,7 +1136,9 @@ export default function Home() {
                   className="mr-2 mt-1 text-brand shrink-0"
                 />
                 <span className="text-ink-muted">
-                  20 Jasmine Grove, Officer, Vic, 3809
+                  Officer,
+                  <br />
+                  Victoria, 3809
                 </span>
               </li>
               <li className="flex items-center">
